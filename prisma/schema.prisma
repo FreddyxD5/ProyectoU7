@@ -10,12 +10,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model songs{
+model cancion{
   id Int   @id @default(autoincrement())
-  name String?
+  name String
   artist String
   album String
-  year DateTime
-  gener String
+  year Int
+  gender String
   duration Int
+  privado Boolean @default(false)
 }
