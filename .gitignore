@@ -1,6 +1,5 @@
 node_modules
 .env
-prisma/migratios
-prisma/dev.db
-prisma/migrations/
-prisma/dev.db
+
+ProyectoU7/prisma/migrations/
+ProyectoU7/prisma/dev.db
