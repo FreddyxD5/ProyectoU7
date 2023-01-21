@@ -18,5 +18,5 @@ model cancion{
   year Int
   gender String
   duration Int
-  privado Boolean @default(false)
+  privado Boolean @default(true)
 }
