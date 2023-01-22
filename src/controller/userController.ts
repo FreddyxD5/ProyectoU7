@@ -1,17 +1,14 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
-
-
 //read
 export const findAll = async (_req: Request, res: Response): Promise<void> => {
     try {
-      const usuarios = await prisma.cancion.findMany();
+      const usuario = await prisma.usuario.findMany();
   
       res.status(200).json({
         ok: true,
-        data: usuarios,
+        data: usuario,
       });
     } catch (error) {
       res.status(500).json({ ok: false, message: error });
@@ -20,43 +17,88 @@ export const findAll = async (_req: Request, res: Response): Promise<void> => {
 
 
 
-
 //create
-export const crearName = async (req: Request, res: Response): Promise<void> => {
-  try {
-    const data = req.body;
-
-    await prisma.usuarios.create({data});
-
-    res.status(201).json({ ok: true, message: "Nombre creada correctamente" });
-  } catch (error) {
-    res.status(500).json({ ok: false, message: error });
-  }
-};
-
-//create
-export const crearEmail = async (req: Request, res: Response): Promise<void> => {
+const prisma = new PrismaClient()
+export const crearUsuario = async (req: Request, res: Response): Promise<void> => {
     try {
       const data = req.body;
   
-      await prisma.usuarios.create({data});
+      await prisma.usuario.create({data});
   
-      res.status(201).json({ ok: true, message: "Email creado correctamente" });
+      res.status(201).json({ ok: true, message: "Usuario creado correctamente" });
     } catch (error) {
       res.status(500).json({ ok: false, message: error });
     }
   };
 
-  //create
-export const crearPassword = async (req: Request, res: Response): Promise<void> => {
+
+
+//delete
+export const borrarUsuario = async (req: Request, res: Response): Promise<void> => {
     try {
-      const data = req.body;
+      const { id } = req.body;
+      const numUsuarios = await prisma.usuario.count({ where: { id } });
   
-      await prisma.usuarios.create({data});
+      if (numUsuarios === 0) {
+        res.status(404).json({ ok: false, message: "El usuario no existe" });
+        return;
+      }
   
-      res.status(201).json({ ok: true, message: "Password creado correctamente" });
+      await prisma.usuario.delete({ where: { id } });
+  
+      res.json({ ok: true, message: "El usuario  ha sido eliminada correctamente" });
     } catch (error) {
       res.status(500).json({ ok: false, message: error });
     }
+  };
+  
+  
+  
+  
+  
+  //update
+  export const actualizarUsuario = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { id } = req.body;
+      const data = req.body;
+      const UsuarioExiste = await prisma.usuario.count({ where: { id } });
+  
+      if (!UsuarioExiste) {
+        res.status(404).json({ ok: false, message: "El usuario no existe" });
+        return;
+      }
+  
+      await prisma.usuario.update({
+        where: { id },
+        data
+      });
+  
+      res.json({ ok: true, message: "El usuario ha sido actualizada correctamente" });
+    } catch (error) {
+      res.status(500).json({ ok: false, message: error });
+    }
+  };
+  
+  
+  //Leer una usuario por id
+  export const findID = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { id } = req.params;
+      const idnu = Number(id);
+  
+      const user = await prisma.usuario.findUnique({ where: { id:idnu } });
+      
+      if (!user) {
+        res.status(404).json({ ok: false, message: "Usuario not found" });
+      }
+      else {
+         res.status(200).json({ ok: true, data: user })
+      }
+     ;
+  
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ ok: false, message: error });
+    } 
   };
   

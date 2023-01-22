@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const usuarioController_1 = require("../controller/usuarioController");
+const userController_1 = require("../controller/userController");
 const cRouter = (0, express_1.Router)();
-cRouter.post("/", usuarioController_1.crearEmail);
-cRouter.post("/", usuarioController_1.crearPassword);
-
+cRouter.post("/", userController_1.crearUsuario);
+cRouter.post("/", userController_1.crearUsuario);
+cRouter.delete("/", userController_1.borrarUsuario);
+cRouter.put("/", userController_1.actualizarUsuario);
+cRouter.get("/:id", userController_1.findID);
 exports.default = cRouter;
-//# sourceMappingURL=cancionRouter.js.map
+//# sourceMappingURL=userRouter.js.map

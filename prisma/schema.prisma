@@ -11,8 +11,8 @@ model usuario{
   id Int @id @default(autoincrement())   
   name String
   email String @unique
-  password Int
-  last_session Date @updatedAt
-  update_at Date  @updatedAt
-  date_born Date @updatedAt
+  password String
+  last_session DateTime @updatedAt
+  update_at DateTime  @updatedAt
+  date_born String
 }
