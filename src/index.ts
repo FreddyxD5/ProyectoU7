@@ -10,7 +10,6 @@ server.use(express.json())
 
 //Rutas de la api
 server.use('/api/v1/users',userRouter)
-server.use('/api/v1/users/:id',userRouter)
 server.use('/api/v1/songs',cancionRouter)
 server.use('/api/v1/songs/:id',cancionRouter)
 server.use('/api/v1/playlist', playlist_router)
