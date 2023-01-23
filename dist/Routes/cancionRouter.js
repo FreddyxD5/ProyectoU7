@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const cancionController_1 = require("../controller/cancionController");
-const cRouter = (0, express_1.Router)();
-cRouter.get("/", cancionController_1.findAll);
-cRouter.post("/", cancionController_1.crearCancion);
-cRouter.delete("/", cancionController_1.borrarCancion);
-cRouter.put("/", cancionController_1.actualizarCancion);
-cRouter.get("/:id", cancionController_1.findID);
-exports.default = cRouter;
+const cancionRouter = (0, express_1.Router)();
+cancionRouter.get("/", cancionController_1.findAll);
+cancionRouter.post("/", cancionController_1.crearCancion);
+cancionRouter.put("/:id", cancionController_1.actualizarCancion);
+cancionRouter.delete("/:id", cancionController_1.borrarCancion);
+cancionRouter.get("/:id", cancionController_1.findID);
+exports.default = cancionRouter;
 //# sourceMappingURL=cancionRouter.js.map
