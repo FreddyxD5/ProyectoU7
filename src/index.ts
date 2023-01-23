@@ -1,4 +1,5 @@
 import cRouter from "./Routes/userRouter";
+
 import express, {type  Application } from "express";
 const PORT = process.env.PORT || 5000;
 
@@ -16,4 +17,5 @@ server.get('/', (req, res)=>{
     })
 })
 
-server.listen(PORT, ()=>{console.log(`Servidor ejecutandose en http://localhost:${PORT}`)})
+
+

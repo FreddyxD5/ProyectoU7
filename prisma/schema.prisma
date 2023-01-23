@@ -16,3 +16,14 @@ model usuario{
   update_at DateTime  @updatedAt
   date_born String
 }
+
+model cancion{
+  id Int   @id @default(autoincrement())
+  name String
+  artist String
+  album String
+  year Int
+  gender String
+  duration Int
+  privado Boolean @default(true)
+}
