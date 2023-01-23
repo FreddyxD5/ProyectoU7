@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { findAll, crearUsuario,borrarUsuario, actualizarUsuario, findID } from "../controller/userController";
-const cRouter: Router = Router();
+const userRouter: Router = Router();
 
 
-cRouter.post("/", crearUsuario);
-cRouter.post("/", crearUsuario);
-cRouter.delete("/",borrarUsuario);
-cRouter.put("/",actualizarUsuario);
-cRouter.get("/:id", findID);
+userRouter.post("/", crearUsuario);
+userRouter.post("/", crearUsuario);
+userRouter.delete("/",borrarUsuario);
+userRouter.put("/",actualizarUsuario);
+userRouter.get("/:id", findID);
 
-export default cRouter;
+export default userRouter;
