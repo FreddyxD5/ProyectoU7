@@ -28,7 +28,6 @@ model Playlist {
   userId Int
   
   songs PlaylistCancion[]
-  
 }
 
 model PlaylistCancion {
