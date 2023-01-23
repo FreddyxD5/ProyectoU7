@@ -1,13 +1,13 @@
+import cRouter from "./Routes/userRouter";
 
-import cRouter from "./Routes/cancionRouter";
 import express, {type  Application } from "express";
 const PORT = process.env.PORT || 5000;
 
 const server: Application = express()
 server.use(express.json())
 
-server.use('/api/v1/songs',cRouter)
-server.use('/api/v1/songs/:id',cRouter)
+server.use('/api/v1/users',cRouter)
+server.use('/api/v1/users/:id',cRouter)
 
 
 server.get('/', (req, res)=>{
@@ -17,4 +17,5 @@ server.get('/', (req, res)=>{
     })
 })
 
-server.listen(PORT, ()=>{console.log(`Servidor ejecutandose en http://localhost:${PORT}`)})
+
+
