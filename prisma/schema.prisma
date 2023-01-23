@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model usuario{
+model Usuario{
   id Int @id @default(autoincrement())   
   name String
   email String @unique
@@ -15,9 +15,33 @@ model usuario{
   last_session DateTime @updatedAt
   update_at DateTime  @updatedAt
   date_born String
+
+  playlist Playlist[]
 }
 
-model cancion{
+
+model Playlist {
+  id Int @id @default(autoincrement())
+  name String
+  //Relacion entre  usuario y playlist
+  user Usuario @relation(fields: [userId], references: [id])
+  userId Int
+  
+  songs PlaylistCancion[]
+  
+}
+
+model PlaylistCancion {
+  //relacion entre Playlis y playlistsong
+  playlist   Playlist @relation(fields: [playlistId], references: [id], onDelete: Cascade)
+  playlistId  Int // relation scalar field (used in the `@relation` attribute above)
+  song   Cancion @relation(fields: [songId], references: [id])
+  songId Int // relation scalar field (used in the `@relation` attribute above)
+  assignedAt DateTime @default(now())
+  @@id([playlistId, songId])
+}
+
+model Cancion{
   id Int   @id @default(autoincrement())
   name String
   artist String
@@ -26,4 +50,6 @@ model cancion{
   gender String
   duration Int
   privado Boolean @default(true)
+
+  playlists PlaylistCancion []
 }
