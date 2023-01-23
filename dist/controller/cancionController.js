@@ -17,12 +17,11 @@ const findAll = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const canciones = yield prisma.cancion.findMany();
         res.status(200).json({
-            ok: true,
-            data: canciones,
+            canciones
         });
     }
     catch (error) {
-        res.status(500).json({ ok: false, message: error });
+        res.status(500).json({ message: error });
     }
 });
 exports.findAll = findAll;
@@ -30,46 +29,50 @@ exports.findAll = findAll;
 const crearCancion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
-        yield prisma.cancion.create({ data });
-        res.status(201).json({ ok: true, message: "Cancion creada correctamente" });
+        const cancion = yield prisma.cancion.create({ data });
+        res.status(201).json({
+            message: "Canción creada correctamente",
+            song: cancion
+        });
     }
     catch (error) {
-        res.status(500).json({ ok: false, message: error });
+        console.log(error);
+        res.status(500).json({ message: error });
     }
 });
 exports.crearCancion = crearCancion;
 //delete
 const borrarCancion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.body;
+        const id = Number(req.params.id);
         const numCanciones = yield prisma.cancion.count({ where: { id } });
         if (numCanciones === 0) {
-            res.status(404).json({ ok: false, message: "La canción no existe" });
+            res.status(404).json({ message: "La canción no existe" });
             return;
         }
         yield prisma.cancion.delete({ where: { id } });
-        res.json({ ok: true, message: "La canción ha sido eliminada correctamente" });
+        res.json({ message: "La canción ha sido eliminada correctamente" });
     }
     catch (error) {
-        res.status(500).json({ ok: false, message: error });
+        res.status(500).json({ message: error });
     }
 });
 exports.borrarCancion = borrarCancion;
 //update
 const actualizarCancion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.body;
+        const id = Number(req.params.id);
         const data = req.body;
         const cancionExiste = yield prisma.cancion.count({ where: { id } });
         if (!cancionExiste) {
-            res.status(404).json({ ok: false, message: "La canción no existe" });
+            res.status(404).json({ message: "La canción no existe" });
             return;
         }
-        yield prisma.cancion.update({
+        const cancion = yield prisma.cancion.update({
             where: { id },
             data
         });
-        res.json({ ok: true, message: "La canción ha sido actualizada correctamente" });
+        res.json({ message: "La canción ha sido actualizada correctamente", song: cancion });
     }
     catch (error) {
         res.status(500).json({ ok: false, message: error });
@@ -83,16 +86,16 @@ const findID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const idnu = Number(id);
         const song = yield prisma.cancion.findUnique({ where: { id: idnu } });
         if (!song) {
-            res.status(404).json({ ok: false, message: "Cancion not found" });
+            res.status(404).json({ message: "Cancion no encontrada" });
         }
         else {
-            res.status(200).json({ ok: true, data: song });
+            res.status(200).json({ cancion: song });
         }
         ;
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ ok: false, message: error });
+        res.status(500).json({ message: error });
     }
 });
 exports.findID = findID;

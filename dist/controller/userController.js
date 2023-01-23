@@ -8,50 +8,73 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findID = exports.actualizarUsuario = exports.borrarUsuario = exports.crearUsuario = exports.findAll = void 0;
-const client_1 = require("@prisma/client");
-//read
-const findAll = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.obtener_usuarios_con_playlist = exports.actualizarUsuario = exports.borrarUsuario = exports.crearUsuario = exports.findByID = exports.findAllUsers = void 0;
+const prismaclient_1 = __importDefault(require("../prismaclient"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+//Obtener todos los usuarios
+const findAllUsers = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const usuario = yield prisma.usuario.findMany();
+        const usuario = yield prismaclient_1.default.usuario.findMany();
         res.status(200).json({
-            ok: true,
             data: usuario,
         });
     }
     catch (error) {
-        res.status(500).json({ ok: false, message: error });
+        res.status(400).json({ message: error });
     }
 });
-exports.findAll = findAll;
-//create
-const prisma = new client_1.PrismaClient();
+exports.findAllUsers = findAllUsers;
+//Leer una usuario por id
+const findByID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id_user = Number(req.params.id);
+    try {
+        const user = yield prismaclient_1.default.usuario.findUnique({ where: { id: id_user } });
+        if (!user) {
+            res.status(404).json({ message: "Usuario no encontrado." });
+        }
+        else {
+            res.status(200).json({ data: user });
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error });
+    }
+});
+exports.findByID = findByID;
 const crearUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = req.body;
-        yield prisma.usuario.create({ data });
-        res.status(201).json({ ok: true, message: "Usuario creado correctamente" });
+        data['password'] = bcryptjs_1.default.hashSync(data['password'], 6);
+        console.log(data);
+        const usuario = yield prismaclient_1.default.usuario.create({ data });
+        res.status(201).json({
+            message: "Usuario creado correctamente",
+            user: usuario
+        });
     }
     catch (error) {
-        res.status(500).json({ ok: false, message: error });
+        res.status(400).json({ message: "Ha ocurrido un error creando el usuario" });
     }
 });
 exports.crearUsuario = crearUsuario;
-//delete
 const borrarUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.body;
-        const numUsuarios = yield prisma.usuario.count({ where: { id } });
+        const id_user = Number(req.params.id);
+        const numUsuarios = yield prismaclient_1.default.usuario.count({ where: { id: id_user } });
         if (numUsuarios === 0) {
-            res.status(404).json({ ok: false, message: "El usuario no existe" });
+            res.status(404).json({ message: "El usuario no existe" });
             return;
         }
-        yield prisma.usuario.delete({ where: { id } });
-        res.json({ ok: true, message: "El usuario  ha sido eliminada correctamente" });
+        yield prismaclient_1.default.usuario.delete({ where: { id: id_user } });
+        res.json({ message: "El usuario  ha sido eliminado correctamente" });
     }
     catch (error) {
-        res.status(500).json({ ok: false, message: error });
+        res.status(500).json({ message: error });
     }
 });
 exports.borrarUsuario = borrarUsuario;
@@ -60,40 +83,39 @@ const actualizarUsuario = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const { id } = req.body;
         const data = req.body;
-        const UsuarioExiste = yield prisma.usuario.count({ where: { id } });
+        const UsuarioExiste = yield prismaclient_1.default.usuario.count({ where: { id } });
         if (!UsuarioExiste) {
-            res.status(404).json({ ok: false, message: "El usuario no existe" });
+            res.status(404).json({ message: "El usuario no existe" });
             return;
         }
-        yield prisma.usuario.update({
+        const usuario = yield prismaclient_1.default.usuario.update({
             where: { id },
             data
         });
-        res.json({ ok: true, message: "El usuario ha sido actualizada correctamente" });
+        res.json({ message: "El usuario ha sido actualizada correctamente", user: usuario });
     }
     catch (error) {
-        res.status(500).json({ ok: false, message: error });
+        res.status(500).json({ message: error });
     }
 });
 exports.actualizarUsuario = actualizarUsuario;
-//Leer una usuario por id
-const findID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const obtener_usuarios_con_playlist = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params;
-        const idnu = Number(id);
-        const user = yield prisma.usuario.findUnique({ where: { id: idnu } });
-        if (!user) {
-            res.status(404).json({ ok: false, message: "Usuario not found" });
+        const users = yield prismaclient_1.default.usuario.findMany({
+            include: {
+                playlists: true
+            }
+        });
+        console.log(users);
+        if (users !== null) {
+            res.status(200).json({
+                users
+            });
         }
-        else {
-            res.status(200).json({ ok: true, data: user });
-        }
-        ;
     }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({ ok: false, message: error });
+    catch (e) {
+        res.status(400).json({ "message": "Algo ha ocurrido porfavor intente nuevamente." });
     }
 });
-exports.findID = findID;
+exports.obtener_usuarios_con_playlist = obtener_usuarios_con_playlist;
 //# sourceMappingURL=userController.js.map

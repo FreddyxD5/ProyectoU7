@@ -9,12 +9,11 @@ export const findAll = async (_req: Request, res: Response): Promise<void> => {
     try {
       const canciones = await prisma.cancion.findMany();
   
-      res.status(200).json({
-        ok: true,
-        data: canciones,
+      res.status(200).json({        
+        canciones
       });
     } catch (error) {
-      res.status(500).json({ ok: false, message: error });
+      res.status(500).json({message: error });
     }
   };
 
@@ -25,12 +24,15 @@ export const findAll = async (_req: Request, res: Response): Promise<void> => {
 export const crearCancion = async (req: Request, res: Response): Promise<void> => {
   try {
     const data = req.body;
+    const cancion = await prisma.cancion.create({data});
 
-    await prisma.cancion.create({data});
-
-    res.status(201).json({ ok: true, message: "Cancion creada correctamente" });
+    res.status(201).json({
+      message: "Canción creada correctamente",
+      song:cancion
+    });
   } catch (error) {
-    res.status(500).json({ ok: false, message: error });
+    console.log(error)
+    res.status(500).json({message: error });
   }
 };
 
@@ -39,19 +41,19 @@ export const crearCancion = async (req: Request, res: Response): Promise<void> =
 //delete
 export const borrarCancion = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { id } = req.body;
+    const id  = Number(req.params.id);
     const numCanciones = await prisma.cancion.count({ where: { id } });
 
     if (numCanciones === 0) {
-      res.status(404).json({ ok: false, message: "La canción no existe" });
+      res.status(404).json({message: "La canción no existe" });
       return;
     }
 
     await prisma.cancion.delete({ where: { id } });
 
-    res.json({ ok: true, message: "La canción ha sido eliminada correctamente" });
+    res.json({message: "La canción ha sido eliminada correctamente"});
   } catch (error) {
-    res.status(500).json({ ok: false, message: error });
+    res.status(500).json({message: error });
   }
 };
 
@@ -62,21 +64,21 @@ export const borrarCancion = async (req: Request, res: Response): Promise<void> 
 //update
 export const actualizarCancion = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { id } = req.body;
+    const id  = Number(req.params.id);
     const data = req.body;
     const cancionExiste = await prisma.cancion.count({ where: { id } });
 
     if (!cancionExiste) {
-      res.status(404).json({ ok: false, message: "La canción no existe" });
+      res.status(404).json({message: "La canción no existe" });
       return;
     }
 
-    await prisma.cancion.update({
+    const cancion = await prisma.cancion.update({
       where: { id },
       data
     });
 
-    res.json({ ok: true, message: "La canción ha sido actualizada correctamente" });
+    res.json({message: "La canción ha sido actualizada correctamente", song:cancion});
   } catch (error) {
     res.status(500).json({ ok: false, message: error });
   }
@@ -92,15 +94,15 @@ export const findID = async (req: Request, res: Response): Promise<void> => {
     const song = await prisma.cancion.findUnique({ where: { id:idnu } });
     
     if (!song) {
-      res.status(404).json({ ok: false, message: "Cancion not found" });
+      res.status(404).json({message: "Cancion no encontrada" });
     }
     else {
-       res.status(200).json({ ok: true, data: song })
+       res.status(200).json({cancion: song})
     }
    ;
 
   } catch (error) {
     console.log(error)
-    res.status(500).json({ ok: false, message: error });
+    res.status(500).json({message: error });
   } 
 };

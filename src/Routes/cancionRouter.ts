@@ -6,8 +6,9 @@ const cancionRouter: Router = Router();
 
 cancionRouter.get("/", findAll);
 cancionRouter.post("/", crearCancion);
-cancionRouter.delete("/",borrarCancion);
-cancionRouter.put("/",actualizarCancion);
+cancionRouter.put("/:id",actualizarCancion);
+cancionRouter.delete("/:id",borrarCancion);
 cancionRouter.get("/:id", findID);
+
 
 export default cancionRouter;
