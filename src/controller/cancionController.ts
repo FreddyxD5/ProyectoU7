@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 
 //read
 export const findAll = async (_req: Request, res: Response): Promise<void> => {    
-    console.log(res.locals.autorizado)
     try {      
       if (res.locals.autorizado){
         var canciones = await prisma.cancion.findMany();
@@ -63,8 +62,6 @@ export const borrarCancion = async (req: Request, res: Response): Promise<void> 
     res.status(500).json({message: error });
   }
 };
-
-
 
 
 

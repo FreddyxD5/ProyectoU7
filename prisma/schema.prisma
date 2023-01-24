@@ -25,20 +25,18 @@ model Usuario{
 
 model Playlist {
   id Int @id @default(autoincrement())
-  name String
-  //Relacion entre  usuario y playlist
+  name String    
   user Usuario @relation(fields: [userId], references: [id])
   userId Int
   
   songs PlaylistCancion[]
 }
 
-model PlaylistCancion {
-  //relacion entre Playlis y playlistsong
+model PlaylistCancion {  
   playlist   Playlist @relation(fields: [playlistId], references: [id], onDelete: Cascade)
-  playlistId  Int // relation scalar field (used in the `@relation` attribute above)
+  playlistId  Int 
   song   Cancion @relation(fields: [songId], references: [id], onDelete: Cascade)
-  songId Int // relation scalar field (used in the `@relation` attribute above)
+  songId Int 
   assignedAt DateTime @default(now())
   @@id([playlistId, songId])
 }
