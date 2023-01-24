@@ -1,6 +1,6 @@
 #  **Proyecto U7 - API Playlist Creator.**
 
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+![diagrama entidad-relación](documentación\esquema inicial.png)
 
 ## Integrantes
 
