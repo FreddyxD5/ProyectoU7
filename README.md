@@ -42,12 +42,14 @@ Grupos de 1 a 3 personas como máximo
 👉 Manejar git como equipo.
 
 ## Consideraciones
-    - Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
+
+- Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
 
 ## Creación de usuarios
 
-    - [x] Creación con password hasheado
-    - [x] Ruta: /api/v1/users => POST
+- [x] Creación con password hasheado #739
+- [x] Ruta: /api/v1/users => POST #739
+- [x] #739
 
 ```
 {
@@ -62,8 +64,8 @@ Grupos de 1 a 3 personas como máximo
 
 ```
 
-Login de usuario
-Ruta: /api/v1/users/login => POST
+- [x] Login de usuario
+- [x] Ruta: /api/v1/users/login => POST
 
 ```
 {
@@ -72,14 +74,14 @@ Ruta: /api/v1/users/login => POST
 }
 ```
 ## Creación de canciones
-Consideraciones
-Hay un campo para indicar si la canción es pública o privada.
 
-En el caso de las privadas, solo podrían verlas los usuarios que son autenticados.
+### Consideraciones
 
-Para la creación de canciones utilizar los siguientes campos:
+- [x] Hay un campo para indicar si la canción es pública o privada.
 
-Ruta: /api/v1/songs => POST
+- [x] En el caso de las privadas, solo podrían verlas los usuarios que son autenticados.
+
+- [x] Para la creación de canciones utilizar los siguientes campos: Ruta: /api/v1/songs => POST
 
 ```
 {
@@ -93,21 +95,16 @@ Ruta: /api/v1/songs => POST
 }
 ```
 
-Leer todas las canciones
-
-Ruta: /api/v1/songs => GET
-Leer una canción por id
-
-Ruta: /api/v1/songs/:id => GET
-Creación de playlist
-Tabla intermedia entre usuarios y canciones.
+- [x] Leer todas las canciones Ruta: /api/v1/songs => GET
+- [x] Leer una canción por id Ruta: /api/v1/songs/:id => GET
+- [x] Creación de playlist
+- [x] Tabla intermedia entre usuarios y canciones.
 
 ## Creación de Playlist
-Si te gusta una canción la agregas a tu playlist (crear ruta para añadir canciones a la playlist)
 
-La playlist debe contener los siguientes campos:
-
-Ruta: /api/v1/playlist => POST
+- [x] Si te gusta una canción la agregas a tu playlist
+- [x] (crear ruta para añadir canciones a la playlist)
+- [x] La playlist debe contener los siguientes campos: Ruta: /api/v1/playlist => POST
 
 ```
 
@@ -139,7 +136,7 @@ Ruta: /api/v1/playlist => POST
 
 ```
 
-Añadir una canción a una playlist:
+- [x] Añadir una canción a una playlist:
 
 ```
 {
