@@ -1,21 +1,32 @@
-Proyecto
-Sobre el proyecto
-Entregables:
+#  **Proyecto U7 - API Playlist Creator.**
 
+![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+
+## Integrantes
+
+- Jesus Freddy Zapata More
+- Luis Fernando Leon Machaca
+- Stefani Camila Gonzales León
+
+
+## Sobre el proyecto
+
+## Entregables:
 URL de repositorio (18 de enero)
 
 Video de youtube (24 de enero)
 
-El día 18 de enero concretarán los avances realizados en la sesión de taller en una URL de github. Posteriormente aplicarán las mejoras respectivas a ese repositorio en los siguientes días.
+-El día 18 de enero concretarán los avances realizados en la sesión de taller en una URL de github. Posteriormente aplicarán las mejoras respectivas a ese repositorio en los siguientes días.
 
-Para su presentación final deberán crear un video en el cual expliquen el funcionamiento de su código en conjunto de una demo, tanto código como el video son necesarios para la calificación.
+-Para su presentación final deberán crear un video en el cual expliquen el funcionamiento de su código en conjunto de una demo, tanto código como el video son necesarios para la calificación.
 
 Tiempo máximo del video: 7 - 10 min. Video que supere el tiempo indicado no será revisado.
 
 Equipo
 Grupos de 1 a 3 personas como máximo
 
-Objetivos
+## Objetivos
+
 👉 Utilizar NodeJs y Express.
 
 👉 Las rutas deberán seguir el patrón REST.
@@ -28,10 +39,10 @@ Objetivos
 
 👉 Manejar git como equipo.
 
-Consideraciones
-Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
+## Consideraciones
+    - Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
 
-Creación de usuarios
+## Creación de usuarios
 Creación con password hasheado
 Ruta: /api/v1/users => POST
 
@@ -51,7 +62,8 @@ Ruta: /api/v1/users/login => POST
   "email": "email@gmail.com",
   "password": "123456"
 }
-Creación de canciones
+
+## Creación de canciones
 Consideraciones
 Hay un campo para indicar si la canción es pública o privada.
 
@@ -80,6 +92,7 @@ Ruta: /api/v1/songs/:id => GET
 Creación de playlist
 Tabla intermedia entre usuarios y canciones.
 
+## Creación de Playlist
 Si te gusta una canción la agregas a tu playlist (crear ruta para añadir canciones a la playlist)
 
 La playlist debe contener los siguientes campos:

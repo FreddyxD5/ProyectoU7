@@ -4,7 +4,7 @@ import { validateAuthorization } from "../middleware/authMiddleware";
 
 
 const userRouter: Router = Router();
-userRouter.use(validateAuthorization)
+//userRouter.use(validateAuthorization)
 
 
 userRouter.get("/user_list", userController.findAllUsers)
