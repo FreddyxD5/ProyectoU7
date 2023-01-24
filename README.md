@@ -1,6 +1,6 @@
 #  **Proyecto U7 - API Playlist Creator.**
 
-![diagrama entidad-relación](https://github.com/FreddyxD5/ProyectoU7/blob/new-branch-two/documentaci%C3%B3n/esquema%20_inicial.png?raw=true)
+
 
 ## Integrantes
 
@@ -10,6 +10,8 @@
 
 
 ## Sobre el proyecto
+
+![diagrama entidad-relación](https://github.com/FreddyxD5/ProyectoU7/blob/new-branch-two/documentaci%C3%B3n/esquema%20_inicial.png?raw=true)
 
 ## Entregables:
 URL de repositorio (18 de enero)
@@ -43,9 +45,12 @@ Grupos de 1 a 3 personas como máximo
     - Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
 
 ## Creación de usuarios
-Creación con password hasheado
+    - Creación con password hasheado
+    - [x] Creación con password hasheado/740
+
 Ruta: /api/v1/users => POST
 
+```
 {
   "id": 1,
   "name": "Usuario 1",
@@ -55,6 +60,9 @@ Ruta: /api/v1/users => POST
   "update_at": Date,
   "date_born": Date
 }
+
+```
+
 Login de usuario
 Ruta: /api/v1/users/login => POST
 
