@@ -3,8 +3,8 @@ import { Request, Response, NextFunction } from "express";
 
 export function validateAuthorizationCanciones(req:Request, res:Response, next:NextFunction){
     const {authorization} = req.headers;
-    
-    if (!authorization) return res.status(401).json({message:"Unauthorizated"});
+    res.locals.autorizado=false
+    if (!authorization) return next();
     if (!authorization.startsWith("Bearer ")) return res.status(401).json({message:"Token format wrong"});
 
     const token = authorization.replace("Bearer ", "")

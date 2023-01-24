@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import prisma from "../prismaclient"
 
 import {default as bcrypt } from "bcryptjs"
@@ -10,10 +10,17 @@ const SECRET_KEY_VARIABLE = process.env.ACCESS_SECRET_TOKEN
 export const findAllUsers = async (_req: Request, res: Response): Promise<void> => {
     try {
       const usuario = await prisma.usuario.findMany();
-  
-      res.status(200).json({       
-        data: usuario,
-      });
+      if (usuario.length < 1) {
+        res.status(200).json({
+          message:"Aun no hay usuarios registrados."
+        })
+        
+      }else{
+        res.status(200).json({       
+          data: usuario,
+        });            
+      }
+            
     } catch (error) {
       res.status(400).json({message: error });
     }
