@@ -12,7 +12,7 @@
 
 ## Sobre el proyecto :pushpin:
 
-![diagrama entidad-relación](https://github.com/FreddyxD5/ProyectoU7/blob/new-branch-two/documentaci%C3%B3n/esquema%20_inicial.png?raw=true)
+![diagrama entidad-relación](https://github.com/FreddyxD5/ProyectoU7/blob/new-branch-two/documentaci%C3%B3n/esquema%20inicial.png?raw=true)
 
 ## Entregables: :pushpin:
 URL de repositorio (18 de enero)
