@@ -1,19 +1,19 @@
-#  **Proyecto U7 - API Playlist Creator. 	:rocket:**
+#  **Proyecto U7 - API Playlist Creator. :headphones::guitar::violin::trumpet::microphone::saxophone: :musical_keyboard::musical_score:	:rocket: :gem:  :trophy**
 
 
 
-## Integrantes
+## Integrantes :pushpin:
 
 - Jesus Freddy Zapata More :wave:
 - Luis Fernando Leon Machaca :wave:
 - Stefani Camila Gonzales León :wave:
 
 
-## Sobre el proyecto
+## Sobre el proyecto :pushpin:
 
 ![diagrama entidad-relación](https://github.com/FreddyxD5/ProyectoU7/blob/new-branch-two/documentaci%C3%B3n/esquema%20_inicial.png?raw=true)
 
-## Entregables:
+## Entregables: :pushpin:
 URL de repositorio (18 de enero)
 
 Video de youtube (24 de enero)
@@ -27,7 +27,7 @@ Tiempo máximo del video: 7 - 10 min. Video que supere el tiempo indicado no ser
 Equipo
 Grupos de 1 a 3 personas como máximo
 
-## Objetivos
+## Objetivos :pushpin:
 
 👉 Utilizar NodeJs y Express.
 
@@ -41,11 +41,11 @@ Grupos de 1 a 3 personas como máximo
 
 👉 Manejar git como equipo.
 
-## Consideraciones
+## Consideraciones :pushpin:
 
 - Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
 
-## Creación de usuarios
+## Creación de usuarios :pushpin:
 
 - [x] Creación con password hasheado
 - [x] Ruta: /api/v1/users => POST
@@ -72,9 +72,9 @@ Grupos de 1 a 3 personas como máximo
   "password": "123456"
 }
 ```
-## Creación de canciones
+## Creación de canciones :pushpin:
 
-### Consideraciones
+### Consideraciones 
 
 - [x] Hay un campo para indicar si la canción es pública o privada.
 
@@ -99,7 +99,7 @@ Grupos de 1 a 3 personas como máximo
 - [x] Creación de playlist
 - [x] Tabla intermedia entre usuarios y canciones.
 
-## Creación de Playlist
+## Creación de Playlist :pushpin:
 
 - [x] Si te gusta una canción la agregas a tu playlist
 - [x] (crear ruta para añadir canciones a la playlist)
