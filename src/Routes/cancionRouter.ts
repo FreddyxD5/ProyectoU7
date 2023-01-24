@@ -1,14 +1,15 @@
 import { Router } from "express";
+import { validateAuthorizationCanciones } from "../middleware/authMiddleware";
 
-import { findAll, crearCancion,borrarCancion, actualizarCancion, findID } from "../controller/cancionController";
+import * as cancionController from "../controller/cancionController";
 
 const cancionRouter: Router = Router();
 
-cancionRouter.get("/", findAll);
-cancionRouter.post("/", crearCancion);
-cancionRouter.put("/:id",actualizarCancion);
-cancionRouter.delete("/:id",borrarCancion);
-cancionRouter.get("/:id", findID);
+cancionRouter.get("/", validateAuthorizationCanciones,cancionController.findAll);
+cancionRouter.post("/", cancionController.crearCancion);
+cancionRouter.put("/:id",cancionController.actualizarCancion);
+cancionRouter.delete("/:id",cancionController.borrarCancion);
+cancionRouter.get("/:id", cancionController.findID);
 
 
 export default cancionRouter;

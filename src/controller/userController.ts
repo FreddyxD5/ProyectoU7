@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
 import prisma from "../prismaclient"
+
 import {default as bcrypt } from "bcryptjs"
+import jwt, {Secret, JwtPayload} from 'jsonwebtoken'
 
 
+const SECRET_KEY_VARIABLE = process.env.ACCESS_SECRET_TOKEN
 //Obtener todos los usuarios
 export const findAllUsers = async (_req: Request, res: Response): Promise<void> => {
     try {
