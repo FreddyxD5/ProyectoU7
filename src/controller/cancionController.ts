@@ -6,8 +6,17 @@ const prisma = new PrismaClient();
 
 //read
 export const findAll = async (_req: Request, res: Response): Promise<void> => {
-    try {
-      const canciones = await prisma.cancion.findMany();
+    console.log('todas las canciones')
+    console.log(res.locals.autorizado)
+    try {      
+      if (res.locals.autorizado){
+        var canciones = await prisma.cancion.findMany();
+      }else{
+        var canciones = await prisma.cancion.findMany({where:{
+          privado:false
+        }})
+      }
+      
   
       res.status(200).json({        
         canciones

@@ -7,11 +7,13 @@ const server_1 = __importDefault(require("./server"));
 const userRouter_1 = __importDefault(require("./Routes/userRouter"));
 const cancionRouter_1 = __importDefault(require("./Routes/cancionRouter"));
 const playlistRouter_1 = __importDefault(require("./Routes/playlistRouter"));
+const authRouter_1 = __importDefault(require("./Routes/authRouter"));
 const PORT = process.env.PORT || 5000;
 //Rutas de la api
 server_1.default.use('/api/v1/users', userRouter_1.default);
 server_1.default.use('/api/v1/songs', cancionRouter_1.default);
 server_1.default.use('/api/v1/playlist', playlistRouter_1.default);
+server_1.default.use('/api/v1/auth', authRouter_1.default);
 server_1.default.get('/', (req, res) => {
     res.json({
         "status_code": 200,

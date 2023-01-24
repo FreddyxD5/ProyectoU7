@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.obtener_usuarios_con_playlist = exports.actualizarUsuario = exports.borrarUsuario = exports.crearUsuario = exports.findByID = exports.findAllUsers = void 0;
 const prismaclient_1 = __importDefault(require("../prismaclient"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const SECRET_KEY_VARIABLE = process.env.ACCESS_SECRET_TOKEN;
 //Obtener todos los usuarios
 const findAllUsers = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

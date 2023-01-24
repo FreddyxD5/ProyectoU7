@@ -7,10 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+
 model Usuario{
   id Int @id @default(autoincrement())   
   name String
-  email String @unique
+  email String @unique  
   password String
   last_session DateTime @updatedAt
   update_at DateTime  @updatedAt
@@ -18,6 +20,7 @@ model Usuario{
 
   playlists Playlist[]
 }
+
 
 
 model Playlist {
