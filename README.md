@@ -1,4 +1,4 @@
-#  **Proyecto U7                                                                                                                                        API - Playlist Creator.                                                                                                                           :headphones::guitar::violin::trumpet::microphone::saxophone::musical_keyboard::musical_score::rocket::gem::trophy:**
+#  **Proyecto U7 :rocket:                                                                                                                                       API - Playlist Creator.                                                                                                                           :gem::gem::gem::headphones::guitar::violin::trumpet::microphone::saxophone::musical_keyboard::musical_score::gem::gem::gem:**
 
 
 
