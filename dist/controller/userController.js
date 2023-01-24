@@ -20,9 +20,16 @@ const SECRET_KEY_VARIABLE = process.env.ACCESS_SECRET_TOKEN;
 const findAllUsers = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const usuario = yield prismaclient_1.default.usuario.findMany();
-        res.status(200).json({
-            data: usuario,
-        });
+        if (usuario.length < 1) {
+            res.status(200).json({
+                message: "Aun no hay usuarios registrados."
+            });
+        }
+        else {
+            res.status(200).json({
+                data: usuario,
+            });
+        }
     }
     catch (error) {
         res.status(400).json({ message: error });

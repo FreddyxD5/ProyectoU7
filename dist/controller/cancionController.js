@@ -14,7 +14,6 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 //read
 const findAll = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('todas las canciones');
     console.log(res.locals.autorizado);
     try {
         if (res.locals.autorizado) {
