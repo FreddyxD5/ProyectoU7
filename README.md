@@ -1,6 +1,6 @@
 #  **Proyecto U7 - API Playlist Creator.**
 
-![diagrama entidad-relación](/documentación/esquemainicial.png)
+![diagrama entidad-relación](/documentación/esquema_inicial.png)
 
 ## Integrantes
 
