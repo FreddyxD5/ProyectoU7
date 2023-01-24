@@ -6,6 +6,46 @@ import jwt, {Secret, JwtPayload} from 'jsonwebtoken'
 
 
 const SECRET_KEY_VARIABLE = process.env.ACCESS_SECRET_TOKEN
+
+//Crear usuario
+export const crearUsuario = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const data = req.body;
+    data['password'] = bcrypt.hashSync(data['password'], 6)     
+    const usuario = await prisma.usuario.create({data});
+
+    res.status(201).json({
+      message: "Usuario creado correctamente",
+      user:usuario
+    });
+  } catch (error) {  
+    res.status(400).json({message: "Ha ocurrido un error creando el usuario" });
+  }    
+};
+
+
+export const login = async(req:Request, res:Response):Promise<void> =>{
+  const data = req.body
+  console.log(data)
+  try{
+    const user = await prisma.usuario.findUnique({where:{email:data['email']}})        
+    if (!user){
+      res.status(203).json({message:"Este usuario no esta registrado."})
+    }else{
+      const isMatch = bcrypt.compareSync(data['password'], user.password)
+      if(isMatch){        
+        const token = jwt.sign(data, process.env.SECRET_KEY || 'llave_secreta', {expiresIn:'2h'}) 
+        res.status(200).json({email:data.email, token})
+      }else{
+        res.status(400).json({message:"Las contraseñas no coinciden"})
+      }      
+    }    
+  }catch(e){
+    res.status(400).json({message:"No se ha podido inciar session."})
+  }
+}
+
+
 //Obtener todos los usuarios
 export const findAllUsers = async (_req: Request, res: Response): Promise<void> => {
     try {
@@ -46,21 +86,6 @@ export const findByID = async (req: Request, res: Response): Promise<void> => {
 };
   
 
-export const crearUsuario = async (req: Request, res: Response): Promise<void> => {
-    try {
-      const data = req.body;
-      data['password'] = bcrypt.hashSync(data['password'], 6)    
-      console.log(data)
-      const usuario = await prisma.usuario.create({data});
-  
-      res.status(201).json({
-        message: "Usuario creado correctamente",
-        user:usuario
-      });
-    } catch (error) {  
-      res.status(400).json({message: "Ha ocurrido un error creando el usuario" });
-    }    
-  };
 
 export const borrarUsuario = async (req: Request, res: Response): Promise<void> => {
   try {

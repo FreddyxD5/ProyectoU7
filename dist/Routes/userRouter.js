@@ -27,9 +27,10 @@ const express_1 = require("express");
 const userController = __importStar(require("../controller/userController"));
 const userRouter = (0, express_1.Router)();
 // userRouter.use(validateAuthorization)
+userRouter.post("/", userController.crearUsuario);
+userRouter.post("/login", userController.login);
 userRouter.get("/user_list", userController.findAllUsers);
 userRouter.get("/user_playlist", userController.obtener_usuarios_con_playlist);
-userRouter.post("/", userController.crearUsuario);
 userRouter.put("/:id", userController.actualizarUsuario);
 userRouter.delete("/:id", userController.borrarUsuario);
 userRouter.get("/:id", userController.findByID);
