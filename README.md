@@ -45,10 +45,9 @@ Grupos de 1 a 3 personas como máximo
     - Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
 
 ## Creación de usuarios
-    - Creación con password hasheado
-    - [x] Creación con password hasheado/740
 
-Ruta: /api/v1/users => POST
+    - [x] Creación con password hasheado
+    - [x] Ruta: /api/v1/users => POST
 
 ```
 {
@@ -66,11 +65,12 @@ Ruta: /api/v1/users => POST
 Login de usuario
 Ruta: /api/v1/users/login => POST
 
+```
 {
   "email": "email@gmail.com",
   "password": "123456"
 }
-
+```
 ## Creación de canciones
 Consideraciones
 Hay un campo para indicar si la canción es pública o privada.
@@ -81,6 +81,7 @@ Para la creación de canciones utilizar los siguientes campos:
 
 Ruta: /api/v1/songs => POST
 
+```
 {
   "id": 1,
   "name": "Canción 1",
@@ -90,6 +91,7 @@ Ruta: /api/v1/songs => POST
   "genre": "Rock",
   "duration": 120
 }
+```
 
 Leer todas las canciones
 
@@ -106,6 +108,9 @@ Si te gusta una canción la agregas a tu playlist (crear ruta para añadir canci
 La playlist debe contener los siguientes campos:
 
 Ruta: /api/v1/playlist => POST
+
+```
+
 {
   "id": 1,
   "name": "Playlist 1",
@@ -131,9 +136,14 @@ Ruta: /api/v1/playlist => POST
     }
   ]
 }
+
+```
+
 Añadir una canción a una playlist:
 
+```
 {
   "id_song": 2,
   "id_playlist": 3,
 }
+```
