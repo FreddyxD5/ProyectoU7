@@ -1,5 +1,5 @@
-># **:gem::gem::gem:ProyectoU7:gem::gem::gem:**
-># **API Playlist Creator🎵🔊🎶 🎼**
+# **:gem::gem::gem:ProyectoU7:gem::gem::gem:**
+# **API Playlist Creator🎵🔊🎶 🎼**
 
 
 
@@ -90,7 +90,7 @@ Grupos de 1 a 3 personas como máximo
   "artist": "Artista 1",
   "album": "Album 1",
   "year": 2020,
-  "genre": "Rock",
+  "gener": "Rock",
   "duration": 120
 }
 ```
