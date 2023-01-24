@@ -1,12 +1,12 @@
-#  **Proyecto U7 - API Playlist Creator.**
+#  **Proyecto U7 - API Playlist Creator. 	:rocket:**
 
 
 
 ## Integrantes
 
-- Jesus Freddy Zapata More
-- Luis Fernando Leon Machaca
-- Stefani Camila Gonzales León
+- Jesus Freddy Zapata More :wave:
+- Luis Fernando Leon Machaca :wave:
+- Stefani Camila Gonzales León :wave:
 
 
 ## Sobre el proyecto
@@ -47,9 +47,8 @@ Grupos de 1 a 3 personas como máximo
 
 ## Creación de usuarios
 
-- [x] Creación con password hasheado #739
-- [x] Ruta: /api/v1/users => POST #739
-- [x] #739
+- [x] Creación con password hasheado
+- [x] Ruta: /api/v1/users => POST
 
 ```
 {
