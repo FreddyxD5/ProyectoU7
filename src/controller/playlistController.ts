@@ -20,13 +20,10 @@ export const crear_playlist = async (req:Request, res:Response):Promise<void> =>
 
         }else{
             res.status(400).json({message:"El usuario no existe"})
-        }
-        
-        
+        }                
     }catch(e){
         res.status(400).json({"message":"Ha ocurrido un error en el sevidor intente más tarde"})
-    }
-    
+    }    
 }
 
 //Obtener playlist y sus canciones

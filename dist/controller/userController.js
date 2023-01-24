@@ -12,10 +12,51 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.obtener_usuarios_con_playlist = exports.actualizarUsuario = exports.borrarUsuario = exports.crearUsuario = exports.findByID = exports.findAllUsers = void 0;
+exports.obtener_usuarios_con_playlist = exports.actualizarUsuario = exports.borrarUsuario = exports.findByID = exports.findAllUsers = exports.login = exports.crearUsuario = void 0;
 const prismaclient_1 = __importDefault(require("../prismaclient"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const SECRET_KEY_VARIABLE = process.env.ACCESS_SECRET_TOKEN;
+//Crear usuario
+const crearUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = req.body;
+        data['password'] = bcryptjs_1.default.hashSync(data['password'], 6);
+        const usuario = yield prismaclient_1.default.usuario.create({ data });
+        res.status(201).json({
+            message: "Usuario creado correctamente",
+            user: usuario
+        });
+    }
+    catch (error) {
+        res.status(400).json({ message: "Ha ocurrido un error creando el usuario" });
+    }
+});
+exports.crearUsuario = crearUsuario;
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const data = req.body;
+    console.log(data);
+    try {
+        const user = yield prismaclient_1.default.usuario.findUnique({ where: { email: data['email'] } });
+        if (!user) {
+            res.status(203).json({ message: "Este usuario no esta registrado." });
+        }
+        else {
+            const isMatch = bcryptjs_1.default.compareSync(data['password'], user.password);
+            if (isMatch) {
+                const token = jsonwebtoken_1.default.sign(data, process.env.SECRET_KEY || 'llave_secreta', { expiresIn: '2h' });
+                res.status(200).json({ email: data.email, token });
+            }
+            else {
+                res.status(400).json({ message: "Las contraseñas no coinciden" });
+            }
+        }
+    }
+    catch (e) {
+        res.status(400).json({ message: "No se ha podido inciar session." });
+    }
+});
+exports.login = login;
 //Obtener todos los usuarios
 const findAllUsers = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -54,22 +95,6 @@ const findByID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.findByID = findByID;
-const crearUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const data = req.body;
-        data['password'] = bcryptjs_1.default.hashSync(data['password'], 6);
-        console.log(data);
-        const usuario = yield prismaclient_1.default.usuario.create({ data });
-        res.status(201).json({
-            message: "Usuario creado correctamente",
-            user: usuario
-        });
-    }
-    catch (error) {
-        res.status(400).json({ message: "Ha ocurrido un error creando el usuario" });
-    }
-});
-exports.crearUsuario = crearUsuario;
 const borrarUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id_user = Number(req.params.id);

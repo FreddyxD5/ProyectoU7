@@ -25,12 +25,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const userController = __importStar(require("../controller/userController"));
-const authMiddleware_1 = require("../middleware/authMiddleware");
 const userRouter = (0, express_1.Router)();
-userRouter.use(authMiddleware_1.validateAuthorization);
+// userRouter.use(validateAuthorization)
+userRouter.post("/", userController.crearUsuario);
+userRouter.post("/login", userController.login);
 userRouter.get("/user_list", userController.findAllUsers);
 userRouter.get("/user_playlist", userController.obtener_usuarios_con_playlist);
-userRouter.post("/", userController.crearUsuario);
 userRouter.put("/:id", userController.actualizarUsuario);
 userRouter.delete("/:id", userController.borrarUsuario);
 userRouter.get("/:id", userController.findByID);

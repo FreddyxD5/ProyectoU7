@@ -11,5 +11,4 @@ playlist_router.delete('/delete_song', eliminar_cancion)
 playlist_router.delete('/delete_playlist/:id', eliminar_playlist)
 playlist_router.get('/:id', playlist_info)
 
-
 export default playlist_router;
