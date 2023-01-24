@@ -1,4 +1,4 @@
-#  **Proyecto U7 :rocket:                                                                                                                                       API - Playlist Creator.                                                                                                                           :gem::gem::gem::headphones::guitar::violin::trumpet::microphone::saxophone::musical_keyboard::musical_score::gem::gem::gem:**
+#  **:gem::gem::gem:Proyecto U7 :gem::gem::gem:-                                                                                                                                      API - Playlist Creator🎵🔊🎶 🎼**
 
 
 
@@ -74,7 +74,7 @@ Grupos de 1 a 3 personas como máximo
 ```
 ## Creación de canciones :pushpin:
 
-### Consideraciones 
+### Consideraciones :rocket:
 
 - [x] Hay un campo para indicar si la canción es pública o privada.
 
