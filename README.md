@@ -1,21 +1,35 @@
-Proyecto
-Sobre el proyecto
-Entregables:
+# **:gem::gem::gem:ProyectoU7:gem::gem::gem:**
+# **API Playlist Creator🎵🔊🎶 🎼**
 
+
+
+## Integrantes :pushpin:
+
+- Jesus Freddy Zapata More :wave:
+- Luis Fernando Leon Machaca :wave:
+- Stefani Camila Gonzales León :wave:
+
+
+## Sobre el proyecto :pushpin:
+
+![diagrama entidad-relación](https://github.com/FreddyxD5/ProyectoU7/blob/new-branch-two/documentaci%C3%B3n/esquema%20inicial.png?raw=true)
+
+## Entregables: :pushpin:
 URL de repositorio (18 de enero)
 
 Video de youtube (24 de enero)
 
-El día 18 de enero concretarán los avances realizados en la sesión de taller en una URL de github. Posteriormente aplicarán las mejoras respectivas a ese repositorio en los siguientes días.
+-El día 18 de enero concretarán los avances realizados en la sesión de taller en una URL de github. Posteriormente aplicarán las mejoras respectivas a ese repositorio en los siguientes días.
 
-Para su presentación final deberán crear un video en el cual expliquen el funcionamiento de su código en conjunto de una demo, tanto código como el video son necesarios para la calificación.
+-Para su presentación final deberán crear un video en el cual expliquen el funcionamiento de su código en conjunto de una demo, tanto código como el video son necesarios para la calificación.
 
 Tiempo máximo del video: 7 - 10 min. Video que supere el tiempo indicado no será revisado.
 
 Equipo
 Grupos de 1 a 3 personas como máximo
 
-Objetivos
+## Objetivos :pushpin:
+
 👉 Utilizar NodeJs y Express.
 
 👉 Las rutas deberán seguir el patrón REST.
@@ -28,13 +42,16 @@ Objetivos
 
 👉 Manejar git como equipo.
 
-Consideraciones
-Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
+## Consideraciones :pushpin:
 
-Creación de usuarios
-Creación con password hasheado
-Ruta: /api/v1/users => POST
+- Todos los response deben ser de los que ofrece prisma al realizar la query a la base de datos.
 
+## Creación de usuarios :pushpin:
+
+- [x] Creación con password hasheado
+- [x] Ruta: /api/v1/users => POST
+
+```
 {
   "id": 1,
   "name": "Usuario 1",
@@ -44,47 +61,53 @@ Ruta: /api/v1/users => POST
   "update_at": Date,
   "date_born": Date
 }
-Login de usuario
-Ruta: /api/v1/users/login => POST
 
+```
+
+- [x] Login de usuario
+- [x] Ruta: /api/v1/users/login => POST
+
+```
 {
   "email": "email@gmail.com",
   "password": "123456"
 }
-Creación de canciones
-Consideraciones
-Hay un campo para indicar si la canción es pública o privada.
+```
+## Creación de canciones :pushpin:
 
-En el caso de las privadas, solo podrían verlas los usuarios que son autenticados.
+### Consideraciones :rocket:
 
-Para la creación de canciones utilizar los siguientes campos:
+- [x] Hay un campo para indicar si la canción es pública o privada.
 
-Ruta: /api/v1/songs => POST
+- [x] En el caso de las privadas, solo podrían verlas los usuarios que son autenticados.
 
+- [x] Para la creación de canciones utilizar los siguientes campos: Ruta: /api/v1/songs => POST
+
+```
 {
   "id": 1,
   "name": "Canción 1",
   "artist": "Artista 1",
   "album": "Album 1",
   "year": 2020,
-  "genre": "Rock",
+  "gener": "Rock",
   "duration": 120
 }
+```
 
-Leer todas las canciones
+- [x] Leer todas las canciones Ruta: /api/v1/songs => GET
+- [x] Leer una canción por id Ruta: /api/v1/songs/:id => GET
+- [x] Creación de playlist
+- [x] Tabla intermedia entre usuarios y canciones.
 
-Ruta: /api/v1/songs => GET
-Leer una canción por id
+## Creación de Playlist :pushpin:
 
-Ruta: /api/v1/songs/:id => GET
-Creación de playlist
-Tabla intermedia entre usuarios y canciones.
+- [x] Si te gusta una canción la agregas a tu playlist
+- [x] (crear ruta para añadir canciones a la playlist)
+- [x] La playlist debe contener los siguientes campos: Ruta: /api/v1/playlist => POST
 
-Si te gusta una canción la agregas a tu playlist (crear ruta para añadir canciones a la playlist)
+```
 
-La playlist debe contener los siguientes campos:
-
-Ruta: /api/v1/playlist => POST
 {
   "id": 1,
   "name": "Playlist 1",
@@ -110,9 +133,14 @@ Ruta: /api/v1/playlist => POST
     }
   ]
 }
-Añadir una canción a una playlist:
 
+```
+
+- [x] Añadir una canción a una playlist:
+
+```
 {
   "id_song": 2,
   "id_playlist": 3,
 }
+```
